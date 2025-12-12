@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { api } from "../services/ApiService";
 import { Input, Button } from "./Input";
 
-type ModalMode = "criar" | "ver" | "editar";
+type ModalMode = "criar" | "ver";
 
 interface ModalProps {
     isOpen: boolean;
@@ -23,17 +23,11 @@ function Modal({ isOpen, onClose, children, mode }: ModalProps) {
             gradient: "from-blue-50 to-indigo-50"
         },
         ver: {
-            header: "bg-gradient-to-r from-emerald-500 to-teal-600",
+            header: "bg-gradient-to-r from-blue-600 to-indigo-600",
             title: "text-white",
-            border: "border-emerald-200 shadow-2xl",
-            gradient: "from-emerald-50 to-teal-50"
+            border: "border-blue-200 shadow-2xl",
+            gradient: "from-blue-50 to-indigo-50"
         },
-        editar: {
-            header: "bg-gradient-to-r from-cyan-500 to-cyan-700",
-            title: "text-white",
-            border: "border-cyan-200 shadow-2xl",
-            gradient: "from-cyan-50 to-cyan-100"
-        }
     };
 
     const currentStyle = modalStyles[mode];
@@ -186,7 +180,7 @@ function ConteudoCriarLista({ onClose, onListaCriada }: { onClose: () => void, o
                     <Button
                         type="button"
                         onClick={onClose}
-                        className="bg-linear-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+                        className="bg-linear-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
                     >
                         Cancelar
                     </Button>
@@ -264,18 +258,18 @@ function ConteudoVerLista({ lista, onClose, onListaAtualizada }: {
 
     return (
         <div className="text-center">
-            <h1 className="text-3xl sm:text-4xl font-bold bg-linear-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-8">
+            <h1 className="text-3xl sm:text-4xl font-bold bg-linear-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent mb-8">
                 Detalhes da Lista
             </h1>
 
             <div className="space-y-8">
-                <div className="bg-linear-to-r from-emerald-50 to-teal-50 p-6 rounded-2xl border-2 border-emerald-200 shadow-lg">
-                    <h2 className="text-2xl font-bold text-emerald-800 mb-3">{lista.nome}</h2>
+                <div className="bg-linear-to-r from-blue-50 to-indigo-50 p-6 rounded-2xl border-2 border-blue-200 shadow-lg">
+                    <h2 className="text-2xl font-bold text-blue-800 mb-3">{lista.nome}</h2>
                     <p className="text-gray-700 text-lg">{lista.descricao}</p>
                 </div>
 
-                <div className="bg-linear-to-br from-white to-gray-50 p-6 rounded-2xl border-2 border-emerald-200 shadow-lg">
-                    <h3 className="text-xl font-semibold text-emerald-700 mb-6 bg-emerald-50 py-3 rounded-xl border border-emerald-200">
+                <div className="bg-linear-to-br from-white to-gray-50 p-6 rounded-2xl border-2 border-blue-200 shadow-lg">
+                    <h3 className="text-xl font-semibold text-blue-700 mb-6 bg-blue-50 py-3 rounded-xl border border-blue-200">
                         📝 Tarefas ({tarefasLocais.length})
                     </h3>
 
@@ -289,7 +283,7 @@ function ConteudoVerLista({ lista, onClose, onListaAtualizada }: {
                                 const tarefaInfo = getTarefaInfo(tarefa);
 
                                 return (
-                                    <li key={index} className="flex items-center gap-4 py-3 px-4 bg-white rounded-xl border border-emerald-100 shadow-sm hover:shadow-md transition-all duration-200 group">
+                                    <li key={index} className="flex items-center gap-4 py-3 px-4 bg-white rounded-xl border border-blue-100 shadow-sm hover:shadow-md transition-all duration-200 group">
                                         <button
                                             onClick={() => toggleTarefa(index)}
                                             className={`w-8 h-8 rounded-full border-2 flex items-center justify-center transition-all duration-200 hover:scale-110 ${tarefaInfo.concluida
@@ -316,7 +310,7 @@ function ConteudoVerLista({ lista, onClose, onListaAtualizada }: {
                 <div className="flex gap-4 mt-8 flex-col sm:flex-row">
                     <Button
                         onClick={handleClose}
-                        className="bg-linear-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+                        className="bg-linear-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
                     >
                         ← Voltar
                     </Button>
@@ -387,7 +381,7 @@ function ConteudoEditarLista({ lista, onClose, onSave }: { lista: any, onClose: 
 
     return (
         <div className="text-center">
-            <h1 className="text-3xl sm:text-4xl font-bold bg-linear-to-r from-cyan-300 to-cyan-800 bg-clip-text text-transparent mb-8">
+            <h1 className="text-3xl sm:text-4xl font-bold bg-linear-to-r from-blue-600 to-indigo-800 bg-clip-text text-transparent mb-8">
                 Editar Lista
             </h1>
 
@@ -397,7 +391,7 @@ function ConteudoEditarLista({ lista, onClose, onSave }: { lista: any, onClose: 
                     placeholder="Nome da Lista"
                     value={nome}
                     onChange={(e) => setNome(e.target.value)}
-                    className="border-2 border-cyan-200 focus:border-cyan-500"
+                    className="border-2 border-blue-200 focus:border-blue-500"
                 />
 
                 <Input
@@ -405,7 +399,7 @@ function ConteudoEditarLista({ lista, onClose, onSave }: { lista: any, onClose: 
                     placeholder="Descrição da Lista"
                     value={descricao}
                     onChange={(e) => setDescricao(e.target.value)}
-                    className="border-2 border-cyan-200 focus:border-cyan-500"
+                    className="border-2 border-blue-200 focus:border-blue-500"
                 />
 
                 <div className="flex w-full gap-3 items-center mt-4">
@@ -415,20 +409,20 @@ function ConteudoEditarLista({ lista, onClose, onSave }: { lista: any, onClose: 
                         value={novaTarefa}
                         onChange={(e) => setNovaTarefa(e.target.value)}
                         onKeyPress={handleKeyPress}
-                        className="border-2 border-cyan-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 transition-all duration-300 flex-1"
+                        className="border-2 border-blue-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 flex-1"
                     />
                     {/*Tive que usar um botão normal pq por algum motivo o componente tava ficando bizarramente grande*/}
                     <button
                         type="button"
                         onClick={AdicionarTarefa}
-                        className="bg-cyan-500 hover:bg-cyan-600 text-white font-medium px-4 py-2 hover:scale-110 cursor-pointer rounded-lg transition-all duration-200 whitespace-nowrap text-sm min-w-[100px]"
+                        className="bg-blue-500 hover:bg-blue-600 text-white font-medium px-4 py-2 hover:scale-110 cursor-pointer rounded-lg transition-all duration-200 whitespace-nowrap text-sm min-w-[100px]"
                     >
                         Adicionar
                     </button>
                 </div>
 
-                <div className="bg-cyan-50 p-4 rounded-xl border-2 border-cyan-200">
-                    <h3 className="text-lg font-semibold text-cyan-800 mb-3">
+                <div className="bg-blue-50 p-4 rounded-xl border-2 border-blue-200">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-3">
                         📝 Tarefas da Lista ({tarefas.length})
                     </h3>
 
@@ -439,12 +433,12 @@ function ConteudoEditarLista({ lista, onClose, onSave }: { lista: any, onClose: 
                     ) : (
                         <div className="max-h-60 overflow-y-auto space-y-2">
                             {tarefas.map((tarefa, index) => (
-                                <div key={index} className="flex gap-2 items-center bg-white p-3 rounded-lg border border-cyan-300">
+                                <div key={index} className="flex gap-2 items-center bg-white p-3 rounded-lg border border-blue-300">
                                     <Input
                                         type="text"
                                         value={tarefa}
                                         onChange={(e) => EditarTarefa(index, e.target.value)}
-                                        className="border border-cyan-300 flex-1"
+                                        className="border border-blue-300 flex-1"
                                         placeholder="Digite a tarefa..."
                                     />
                                     <button
@@ -462,13 +456,13 @@ function ConteudoEditarLista({ lista, onClose, onSave }: { lista: any, onClose: 
                 <div className="flex gap-4 justify-center mt-6">
                     <Button
                         onClick={onClose}
-                        className="bg-linear-to-r from-gray-500 to-gray-600 text-white px-8"
+                        className="bg-linear-to-r from-red-500 to-red-600 text-white px-8"
                     >
                         Cancelar
                     </Button>
                     <Button
                         onClick={handleSave}
-                        className="bg-linear-to-r from-cyan-500 to-cyan-700 text-white px-8"
+                        className="bg-linear-to-r from-blue-600 to-indigo-700 text-white px-8"
                     >
                         Salvar
                     </Button>
@@ -607,14 +601,8 @@ export function ViewList() {
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Button
-                        onClick={CarregarListas}
-                        className="bg-linear-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 border-2 border-white border-opacity-20"
-                    >
-                        Atualizar Listas
-                    </Button>
-                    <Button
                         onClick={abrirModalCriar}
-                        className="bg-linear-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 border-2 border-white border-opacity-20"
+                        className="bg-linear-to-r from-blue-600 to-indigo-700 hover:from-blue-7 00 hover:to-indigo-800 text-white font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 border-2 border-white border-opacity-20"
                     >
                         Criar Nova Lista
                     </Button>
@@ -695,7 +683,7 @@ export function ViewList() {
             <Modal
                 isOpen={modalEditarAberto}
                 onClose={fecharModalEditar}
-                mode="editar"
+                mode="ver"
             >
                 {listaParaEditar && (
                     <ConteudoEditarLista
